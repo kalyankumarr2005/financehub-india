@@ -2,6 +2,17 @@
   "articles": [
     {
       "date": "2026-06-26",
+      "edition": "finance-news",
+      "filename": "2026-06-26-finance-news.html",
+      "url": "https://kalyankumarr2005.github.io/financehub-india/blog/2026-06-26-finance-news.html",
+      "title": "Indian Markets Today: IPO Frenzy, RBI Directives & Global Tech Jitters (June 26, 2026)",
+      "metaDesc": "India's markets buzz with upcoming IPOs like SBI MF, Jio, and NSE. RBI issues credit derivative rules, while global tech sell-off impacts sentiment. Get today's finance news.",
+      "seoTags": [],
+      "wordCount": 1450,
+      "generatedAt": "2026-06-26T17:11:51.821Z"
+    },
+    {
+      "date": "2026-06-26",
       "edition": "market-update",
       "filename": "2026-06-26-market-update.html",
       "url": "https://kalyankumarr2005.github.io/financehub-india/blog/2026-06-26-market-update.html",
@@ -12,5 +23,5 @@
       "generatedAt": "2026-06-26T08:21:36.824Z"
     }
   ],
-  "updatedAt": "2026-06-26T08:21:36.827Z"
+  "updatedAt": "2026-06-26T17:11:51.823Z"
 }
