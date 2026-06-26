@@ -9,14 +9,14 @@ export async function loadConfig() {
 
   const missing = ['GEMINI_API_KEY'].filter(k => !process.env[k]);
   if (missing.length) {
-    throw new Error('Missing: ' + missing.join(', ') + '\nGet a FREE Gemini key at https://aistudio.google.com/app/apikey');
+    throw new Error('Missing: ' + missing.join(', '));
   }
 
   const root = process.env.SITE_ROOT || path.join(__dirname, '../');
 
   return {
     geminiApiKey:  process.env.GEMINI_API_KEY,
-    geminiModel:   'gemini-1.5-flash',
+    geminiModel:   'gemini-pro',
     newsApiKey:    process.env.NEWS_API_KEY || null,
 
     rssFeeds: [
