@@ -1,0 +1,134 @@
+# .github/workflows/blog-pipeline.yml
+#
+# FinanceHub India — Automated Blog Pipeline
+# Runs FREE on GitHub Actions · Deploys FREE to GitHub Pages
+#
+# Setup (one time):
+#   1. Go to your repo → Settings → Secrets → Actions
+#   2. Add secret: GEMINI_API_KEY  (get free at https://aistudio.google.com/app/apikey)
+#   3. Go to Settings → Pages → Source → "GitHub Actions"
+#   4. Push this file — pipeline runs automatically!
+
+name: FinanceHub India — Blog Pipeline
+
+on:
+  # ── Automatic schedule ───────────────────────────────────────────────────────
+  schedule:
+    # Morning edition — 08:00 IST (02:30 UTC) on weekdays
+    - cron: '30 2 * * 1-5'
+    # Closing edition — 15:35 IST (10:05 UTC) on weekdays
+    - cron: '5 10 * * 1-5'
+
+  # ── Manual trigger (run anytime from GitHub UI) ──────────────────────────────
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: 'Edition type'
+        required: true
+        default: 'market-update'
+        type: choice
+        options:
+          - market-update
+          - finance-news
+      date:
+        description: 'Date (YYYY-MM-DD) — leave blank for today'
+        required: false
+        default: ''
+
+  # ── Also run on push to main (for testing) ───────────────────────────────────
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - '.github/workflows/blog-pipeline.yml'
+
+# Allow Actions to write to the repo (needed to commit generated files)
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Only one pipeline runs at a time
+concurrency:
+  group: blog-pipeline
+  cancel-in-progress: false
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest   # FREE on GitHub Actions
+
+    steps:
+      # ── 1. Checkout repo ──────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so we can push back
+
+      # ── 2. Set up Node.js ─────────────────────────────────────────────────────
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # ── 3. No npm install needed — zero dependencies! ─────────────────────────
+
+      # ── 4. Determine edition from schedule or manual trigger ──────────────────
+      - name: Determine edition
+        id: edition
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.edition }}" ]; then
+            echo "type=${{ inputs.edition }}" >> $GITHUB_OUTPUT
+          else
+            HOUR=$(date -u +%H)
+            if [ "$HOUR" -ge "10" ]; then
+              echo "type=finance-news" >> $GITHUB_OUTPUT
+            else
+              echo "type=market-update" >> $GITHUB_OUTPUT
+            fi
+          fi
+          if [ -n "${{ inputs.date }}" ]; then
+            echo "date=--date=${{ inputs.date }}" >> $GITHUB_OUTPUT
+          else
+            echo "date=" >> $GITHUB_OUTPUT
+          fi
+
+      # ── 5. Run the pipeline ───────────────────────────────────────────────────
+      - name: Run blog pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NEWS_API_KEY:   ${{ secrets.NEWS_API_KEY }}    # optional
+          SITE_URL:       ${{ vars.SITE_URL || 'https://YOUR-USERNAME.github.io/financehub-india' }}
+          SITE_ROOT:      ${{ github.workspace }}
+          BLOG_OUTPUT_DIR:${{ github.workspace }}/blog
+        run: |
+          node src/pipeline.js \
+            --type=${{ steps.edition.outputs.type }} \
+            ${{ steps.edition.outputs.date }}
+
+      # ── 6. Commit generated files back to repo ────────────────────────────────
+      - name: Commit generated articles
+        run: |
+          git config user.name  "FinanceHub Bot"
+          git config user.email "bot@financehubindia.com"
+          git add blog/ index.html
+          git diff --staged --quiet || git commit -m \
+            "🤖 Auto-publish: ${{ steps.edition.outputs.type }} $(date +'%Y-%m-%d %H:%M IST')"
+          git push
+
+      # ── 7. Deploy to GitHub Pages ─────────────────────────────────────────────
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'   # deploy entire repo root as the website
+
+  deploy-pages:
+    needs: generate-and-deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
