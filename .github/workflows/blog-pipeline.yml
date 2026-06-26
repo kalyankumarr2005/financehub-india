@@ -1,0 +1,90 @@
+name: FinanceHub India Blog Pipeline
+on:
+  schedule:
+    - cron: '30 2 * * 1-5'
+    - cron: '5 10 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: 'Edition type'
+        required: true
+        default: 'market-update'
+        type: choice
+        options:
+          - market-update
+          - finance-news
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: blog-pipeline
+  cancel-in-progress: false
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Determine edition
+        id: edition
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "type=${{ inputs.edition }}" >> $GITHUB_OUTPUT
+          else
+            HOUR=$(date -u +%H)
+            if [ "$HOUR" -ge "10" ]; then
+              echo "type=finance-news" >> $GITHUB_OUTPUT
+            else
+              echo "type=market-update" >> $GITHUB_OUTPUT
+            fi
+          fi
+          echo "date=" >> $GITHUB_OUTPUT
+
+      - name: Run blog pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SITE_URL: https://kalyankumarr2005.github.io/financehub-india
+          SITE_ROOT: ${{ github.workspace }}
+          BLOG_OUTPUT_DIR: ${{ github.workspace }}/blog
+        run: |
+          node src/pipeline.js --type=${{ steps.edition.outputs.type }}
+
+      - name: Commit generated articles
+        run: |
+          git config user.name "FinanceHub Bot"
+          git config user.email "bot@financehubindia.com"
+          git add blog/ index.html || true
+          git diff --staged --quiet || git commit -m "Auto-publish: $(date +'%Y-%m-%d')"
+          git push || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy-pages:
+    needs: generate-and-deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
