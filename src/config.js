@@ -16,7 +16,7 @@ export async function loadConfig() {
 
   return {
     geminiApiKey:  process.env.GEMINI_API_KEY,
-    geminiModel:   'gemini-1.5-flash-latest-002',
+    geminiModel:   'gemini-1.5-flash',
     newsApiKey:    process.env.NEWS_API_KEY || null,
 
     rssFeeds: [
