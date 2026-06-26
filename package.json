@@ -1,0 +1,13 @@
+{
+  "name": "financehub-india",
+  "version": "2.0.0",
+  "description": "100% free automated daily finance blog",
+  "type": "module",
+  "engines": { "node": ">=18.0.0" },
+  "scripts": {
+    "start": "node src/pipeline.js",
+    "morning": "node src/pipeline.js --type=market-update",
+    "afternoon": "node src/pipeline.js --type=finance-news"
+  },
+  "dependencies": {}
+}
