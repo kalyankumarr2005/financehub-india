@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "date": "2026-06-29",
+      "edition": "finance-news",
+      "filename": "2026-06-29-finance-news.html",
+      "url": "https://kalyankumarr2005.github.io/financehub-india/blog/2026-06-29-finance-news.html",
+      "title": "Indian Markets Dip: Sensex Falls 372 Pts, Experts Eye Long-Term Growth & 'Buy on Dips' | June 29, 2026",
+      "metaDesc": "Indian stocks dipped today, with Sensex down 372 points. Despite short-term volatility, experts see compelling setups for Indian equities to outperform. RBI releases external debt data. Explore investment strategies & market outlook for June 29, 2026.",
+      "seoTags": [],
+      "wordCount": 30,
+      "generatedAt": "2026-06-29T16:30:40.200Z"
+    },
+    {
       "date": "2026-06-26",
       "edition": "finance-news",
       "filename": "2026-06-26-finance-news.html",
@@ -23,5 +34,5 @@
       "generatedAt": "2026-06-26T08:21:36.824Z"
     }
   ],
-  "updatedAt": "2026-06-26T17:11:51.823Z"
+  "updatedAt": "2026-06-29T16:30:40.203Z"
 }
