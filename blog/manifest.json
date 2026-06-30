@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "date": "2026-06-30",
+      "edition": "finance-news",
+      "filename": "2026-06-30-finance-news.html",
+      "url": "https://kalyankumarr2005.github.io/financehub-india/blog/2026-06-30-finance-news.html",
+      "title": "Indian Market Wrap: Nifty IT Hits 52-Week Low, Sensex Dips on June 30, 2026 – What's Next?",
+      "metaDesc": "Indian benchmarks Sensex and Nifty closed lower on June 30, 2026, as Nifty IT hit a 52-week low. Broader markets outperformed, while RBI's FCNR move boosted banks. Explore expert views and market outlook.",
+      "seoTags": [],
+      "wordCount": 1302,
+      "generatedAt": "2026-06-30T11:59:17.383Z"
+    },
+    {
       "date": "2026-06-29",
       "edition": "finance-news",
       "filename": "2026-06-29-finance-news.html",
@@ -34,5 +45,5 @@
       "generatedAt": "2026-06-26T08:21:36.824Z"
     }
   ],
-  "updatedAt": "2026-06-29T18:21:30.673Z"
+  "updatedAt": "2026-06-30T11:59:17.385Z"
 }
