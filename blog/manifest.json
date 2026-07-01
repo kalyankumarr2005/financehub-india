@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "date": "2026-07-01",
+      "edition": "finance-news",
+      "filename": "2026-07-01-finance-news.html",
+      "url": "https://kalyankumarr2005.github.io/financehub-india/blog/2026-07-01-finance-news.html",
+      "title": "Indian Markets Rebound, RBI Norms Tighten, & Nifty Eyes 25,000: Your FinanceHub India Update (July 1, 2026)",
+      "metaDesc": "Indian markets surged today, Nifty crossed 24,000, as new RBI capital norms kicked in. Discover key sectors, IPO news, and expert insights on SIPs vs. market timing. Stay informed with FinanceHub India.",
+      "seoTags": [],
+      "wordCount": 38,
+      "generatedAt": "2026-07-01T12:25:39.474Z"
+    },
+    {
       "date": "2026-06-30",
       "edition": "finance-news",
       "filename": "2026-06-30-finance-news.html",
@@ -45,5 +56,5 @@
       "generatedAt": "2026-06-26T08:21:36.824Z"
     }
   ],
-  "updatedAt": "2026-06-30T17:21:59.920Z"
+  "updatedAt": "2026-07-01T12:25:39.476Z"
 }
