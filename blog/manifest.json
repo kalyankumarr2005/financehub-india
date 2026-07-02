@@ -1,6 +1,21 @@
 {
   "articles": [
     {
+      "date": "2026-07-02",
+      "edition": "finance-news",
+      "filename": "2026-07-02-finance-news.html",
+      "url": "https://kalyankumarr2005.github.io/financehub-india/blog/2026-07-02-finance-news.html",
+      "title": "Indian Markets Rebound, SBI MF IPO Looms: Your FinanceHub India Update (July 2, 2026)",
+      "metaDesc": "Indian markets surged today, with Sensex gaining 579 points. Explore the Nifty 50's H2 outlook, SBI MF's upcoming IPO, rupee's struggle, and key stock movers.",
+      "seoTags": [
+        "Indian Stock Market",
+        "Nifty 50",
+        "Sensex"
+      ],
+      "wordCount": 1570,
+      "generatedAt": "2026-07-02T11:44:49.967Z"
+    },
+    {
       "date": "2026-07-01",
       "edition": "finance-news",
       "filename": "2026-07-01-finance-news.html",
@@ -56,5 +71,5 @@
       "generatedAt": "2026-06-26T08:21:36.824Z"
     }
   ],
-  "updatedAt": "2026-07-01T17:31:34.116Z"
+  "updatedAt": "2026-07-02T11:44:49.971Z"
 }
