@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "date": "2026-07-03",
+      "edition": "finance-news",
+      "filename": "2026-07-03-finance-news.html",
+      "url": "https://kalyankumarr2005.github.io/financehub-india/blog/2026-07-03-finance-news.html",
+      "title": "Indian Stock Market Soars: Nifty Eyes 25,000 as SIFs Gain Traction on July 3, 2026",
+      "metaDesc": "Indian markets rallied on July 3, 2026, with Nifty above 24,270 and smallcaps soaring. Learn about SIFs' rapid growth, IT sector recovery, and key stocks like Indiabulls.",
+      "seoTags": [],
+      "wordCount": 716,
+      "generatedAt": "2026-07-03T11:43:13.127Z"
+    },
+    {
       "date": "2026-07-02",
       "edition": "finance-news",
       "filename": "2026-07-02-finance-news.html",
@@ -67,5 +78,5 @@
       "generatedAt": "2026-06-26T08:21:36.824Z"
     }
   ],
-  "updatedAt": "2026-07-02T16:29:53.515Z"
+  "updatedAt": "2026-07-03T11:43:13.129Z"
 }
