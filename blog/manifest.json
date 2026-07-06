@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "date": "2026-07-06",
+      "edition": "finance-news",
+      "filename": "2026-07-06-finance-news.html",
+      "url": "https://kalyankumarr2005.github.io/financehub-india/blog/2026-07-06-finance-news.html",
+      "title": "Indian Markets Surge on July 6, 2026: Nifty 50 Crosses 24,400 as NSE Gears Up for Mega IPO",
+      "metaDesc": "Indian stock markets surged today with Nifty above 24,400. NSE's mega IPO set for September, FIIs favour financials. Stay updated with FinanceHub India.",
+      "seoTags": [],
+      "wordCount": 1256,
+      "generatedAt": "2026-07-06T14:44:32.947Z"
+    },
+    {
       "date": "2026-07-03",
       "edition": "finance-news",
       "filename": "2026-07-03-finance-news.html",
@@ -78,5 +89,5 @@
       "generatedAt": "2026-06-26T08:21:36.824Z"
     }
   ],
-  "updatedAt": "2026-07-03T11:43:13.129Z"
+  "updatedAt": "2026-07-06T14:44:32.950Z"
 }
